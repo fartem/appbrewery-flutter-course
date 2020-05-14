@@ -1,6 +1,5 @@
 name: micard
 description: Third Flutter app from App Brewery Flutter course.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0
 
 environment:
