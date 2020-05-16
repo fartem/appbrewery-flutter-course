@@ -7,16 +7,6 @@ void main() => runApp(
 );
 
 class XylophoneApp extends StatelessWidget {
-  final _keyColors = [
-    Colors.red,
-    Colors.orange,
-    Colors.yellow,
-    Colors.green,
-    Colors.teal,
-    Colors.blue,
-    Colors.purple
-  ];
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -25,24 +15,24 @@ class XylophoneApp extends StatelessWidget {
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            _buildKey(1),
-            _buildKey(2),
-            _buildKey(3),
-            _buildKey(4),
-            _buildKey(5),
-            _buildKey(6),
-            _buildKey(7)
+            _buildKey(Colors.red, 1),
+            _buildKey(Colors.orange, 2),
+            _buildKey(Colors.yellow, 3),
+            _buildKey(Colors.green, 4),
+            _buildKey(Colors.teal, 5),
+            _buildKey(Colors.blue, 6),
+            _buildKey(Colors.purple, 7)
           ],
         ),
       ),
     );
   }
   
-  Expanded _buildKey(int note) {
+  Expanded _buildKey(Color color, int note) {
     return Expanded(
       // ignore: missing_required_param
       child: FlatButton(
-        color: _keyColors[note - 1],
+        color: color,
         onPressed: () {
           _playSound(note);
         },
