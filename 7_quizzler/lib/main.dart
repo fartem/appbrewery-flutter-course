@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quizzler/quiz_brain.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 QuizBrain _quizBrain = QuizBrain();
 
@@ -35,8 +36,6 @@ class _QuizPage extends StatefulWidget {
 
 class _QuizPageState extends State<_QuizPage> {
   List<Icon> _scoreKeeper = [];
-
-  int _questionNumber = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -75,13 +74,7 @@ class _QuizPageState extends State<_QuizPage> {
                 ),
               ),
               onPressed: () {
-                bool correctAnswer = _quizBrain.getQuestionAnswer();
-                if (correctAnswer) {
-
-                }
-                setState(() {
-                  _quizBrain.nextQuestion();
-                });
+                _checkAnswer(true);
               },
             ),
           ),
@@ -101,13 +94,7 @@ class _QuizPageState extends State<_QuizPage> {
                 ),
               ),
               onPressed: () {
-                bool correctAnswer = _quizBrain.getQuestionAnswer();
-                if (!correctAnswer) {
-
-                }
-                setState(() {
-                  _quizBrain.nextQuestion();
-                });
+                _checkAnswer(false);
               },
             ),
           ),
@@ -117,5 +104,38 @@ class _QuizPageState extends State<_QuizPage> {
         )
       ],
     );
+  }
+
+  void _checkAnswer(bool userPickedAnswer) {
+    if (_quizBrain.isLastQuestion()) {
+      _quizBrain.reset();
+      _scoreKeeper = [];
+      Alert(
+        context: context,
+        title: 'Finished!',
+        desc: 'You have reached the end of the quiz.'
+      ).show();
+      setState(() {});
+    } else {
+      bool correctAnswer = _quizBrain.getQuestionAnswer();
+      if (userPickedAnswer == correctAnswer) {
+        _scoreKeeper.add(
+            Icon(
+              Icons.check,
+              color: Colors.green,
+            )
+        );
+      } else {
+        _scoreKeeper.add(
+            Icon(
+              Icons.close,
+              color: Colors.red,
+            )
+        );
+      }
+      setState(() {
+        _quizBrain.nextQuestion();
+      });
+    }
   }
 }

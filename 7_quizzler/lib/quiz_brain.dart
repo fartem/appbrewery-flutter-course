@@ -62,13 +62,21 @@ class QuizBrain {
     return _questions[_questionNumber].text;
   }
 
+  bool getQuestionAnswer() {
+    return _questions[_questionNumber].answer;
+  }
+
+  bool isLastQuestion() {
+    return _questionNumber == _questions.length - 1;
+  }
+
+  void reset() {
+    _questionNumber = 0;
+  }
+
   void nextQuestion() {
     if (_questionNumber < _questions.length - 1) {
       _questionNumber++;
     }
-  }
-
-  bool getQuestionAnswer() {
-    return _questions[_questionNumber].answer;
   }
 }
