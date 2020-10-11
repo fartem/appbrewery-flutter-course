@@ -4,7 +4,6 @@
 
 Comlpeleted [Introduction to Flutter Development Using Dart](https://www.appbrewery.co/courses/851555) course.
 
-## Course
+## Course (NOW - IS NOT AVAILABLE)
 
 https://www.appbrewery.co/courses/851555
-
